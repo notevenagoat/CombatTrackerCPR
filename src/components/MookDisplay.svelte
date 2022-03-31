@@ -37,8 +37,23 @@ Stylize the boxes
           <li>Evasion {currentMook.skills.Evasion}</li>
           <li>Brawling {currentMook.skills.Brawling}</li>
           {#if currentMook.skills.Melee}
-            <li>Melee {currentMook.skills.Melee}</li>
+            <li>Melee : {currentMook.skills.Melee}</li>
           {/if}
+          {#if currentMook.skills.Handgun}
+          <li>Handgun :  {currentMook.skills.Handgun}</li>
+        {/if}
+        {#if currentMook.skills.ShoulderArms}
+          <li>Shoulder Arms : {currentMook.skills.ShoulderArms}</li>
+        {/if}
+        {#if currentMook.skills.HeavyWeapons}
+          <li>Heavy Weapons : {currentMook.skills.HeavyWeapons}</li>
+        {/if}
+        {#if currentMook.skills.MartialArts}
+          <li>Martial Arts :  {currentMook.skills.MartialArts}</li>
+        {/if}
+        {#if currentMook.skills.Autofire}
+          <li>Autofire :  {currentMook.skills.Autofire}</li>
+        {/if}
         </div>
       </div>
       <div class="box c ">
@@ -78,7 +93,7 @@ Stylize the boxes
   .mookDetails {
     border: 2px solid black;
     min-width: 600px;
-    width: 70vw;
+    width: 80vw;
   }
   .wrapper {
     display: grid;

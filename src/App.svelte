@@ -1,18 +1,18 @@
 <script>
   import MookDisplay from "./components/MookDisplay.svelte"
+import SelectMook from "./components/SelectMook.svelte";
   import { mooks } from "./stores.js";
 
-  let name = "Black Goats";
 </script>
 
 <main>
-  <h1>Hello {name}!</h1>
+  <h1>Cyberpunk Red Combat Tracker</h1>
 
+  <SelectMook />
 
-    {#each Object.entries($mooks) as [id,contents], i}
-    <p>Mook: {i}</p>
+    <!-- {#each Object.entries($mooks) as [id,contents], i}
   <MookDisplay currentMook={contents}/>
-    {/each}
+    {/each} -->
 
 
 </main>

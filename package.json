@@ -1,6 +1,5 @@
 {
-  
-   "type": "module",
+  "type": "module",
   "name": "svelte-app",
   "version": "1.0.0",
   "private": true,
