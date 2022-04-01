@@ -1,19 +1,20 @@
 <script>
-import { mooks } from "../stores.js";
+import { mooks, selectedMook } from "../stores.js";
 
 import MookDisplay from "./MookDisplay.svelte";
 
-let selected;
+let selected = 0;
 let answered;
 
-function handleSubmit() {
-		alert(mooks[selected].name);
-	}
+function handleSelection() {
+    $selectedMook=selected;
+    answered='yes';
+}
+  
 </script>
 
 <main>
-    <form on:submit|preventDefault={handleSubmit}>
-	<select bind:value={selected} on:change="{() => answered='yes'}">
+	<select bind:value={selected} on:change="{handleSelection}">
 		<optgroup label="Disposable Mooks">
         {#each $mooks as thisMook}
         {#if thisMook.difficulty === 1}	
@@ -52,7 +53,7 @@ function handleSubmit() {
                     </optgroup>
 	</select>
   
-{#if answered==='yes'}
+{#if answered === 'yes'}
 <MookDisplay currentMook={$mooks[selected]}/>
 {/if}
 

@@ -1,5 +1,5 @@
 <script>
-  import MookDisplay from "./components/MookDisplay.svelte"
+  import TrackerDisplay from "./components/TrackerDisplay.svelte";
 import SelectMook from "./components/SelectMook.svelte";
   import { mooks } from "./stores.js";
 
@@ -8,11 +8,12 @@ import SelectMook from "./components/SelectMook.svelte";
 <main>
   <h1>Cyberpunk Red Combat Tracker</h1>
 
+<div class="selection">
   <SelectMook />
-
-    <!-- {#each Object.entries($mooks) as [id,contents], i}
-  <MookDisplay currentMook={contents}/>
-    {/each} -->
+</div>
+<div class="tracker">
+  <TrackerDisplay />
+</div>
 
 
 </main>
@@ -20,4 +21,11 @@ import SelectMook from "./components/SelectMook.svelte";
 <style>
 
 
+.selection {
+     min-width: 600px;
+    width: 90%;
+  }
+  .tracker {
+    display: inline;
+  }
 </style>

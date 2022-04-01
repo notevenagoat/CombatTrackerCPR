@@ -1,13 +1,9 @@
 import { add_flush_callback, subscribe } from "svelte/internal";
-import { writable, derived, readable } from "svelte/store";
+import { writable, readable } from "svelte/store";
 
-export const itemsInCart = writable(0);
-export const cartContents = writable([]);
-export const totalPrice = derived(
-  itemsInCart,
-  ($itemsInCart) => $itemsInCart * 0.5
-);
-export const inventory = ["apples", "leeks", "flour", "potatoes", "berries"];
+export const trackedMooks = writable([]);
+export const selectedMook = writable(0);
+
 export const hardenedMook_text = [
   "Mook is firing incendiary ammunition (CP:R page 346), but only has 10 rounds.",
   "Add 2 additional Mooks to the encounter at the start of the 2nd Round.",

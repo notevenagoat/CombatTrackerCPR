@@ -14,6 +14,8 @@ Stylize the boxes
 -->
 
 <main>
+
+ 
   <div class="mookDetails">
     <div class="wrapper">
       <div class="box a">
@@ -90,14 +92,10 @@ Stylize the boxes
 </main>
 
 <style>
-  .mookDetails {
-    border: 2px solid black;
-    min-width: 600px;
-    width: 80vw;
-  }
+  
   .wrapper {
     display: grid;
-    grid-template-columns: minmax(120px, 2fr) minmax(220px, 3fr) minmax(
+    grid-template-columns: minmax(150px, 2fr) minmax(220px, 3fr) minmax(
         200px,
         2fr
       );

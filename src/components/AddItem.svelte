@@ -4,7 +4,6 @@
     export let item;
 
     const addItem = () => {
-  itemsInCart.update(items => items + 1);
   cartContents.update(contents => [...contents, item]);
 }
 

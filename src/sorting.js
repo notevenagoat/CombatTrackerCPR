@@ -11,6 +11,5 @@ wtf.forEach((mook) => {
         Object.entries(mook.skills).sort(([,a],[,b]) => b-a)
         
     );
-    console.log(sortable)
 });
 
