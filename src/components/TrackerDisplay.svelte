@@ -3,6 +3,7 @@
 
   const addMook = () => {
     trackedMooks.update((contents) => [...contents, $mooks[$selectedMook]]);
+    selectedMook.set(666)
   };
 
 let selectionValidate
@@ -11,7 +12,7 @@ let selectionValidate
 	});
 
   function validation(selected) {
-    if (selected === 0) {
+    if (selected === 666) {
       return true;
     } else {
       return false;

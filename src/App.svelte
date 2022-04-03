@@ -1,8 +1,13 @@
 <script>
   import TrackerDisplay from "./components/TrackerDisplay.svelte";
-import SelectMook from "./components/SelectMook.svelte";
-  import { mooks } from "./stores.js";
+  import SelectMook from "./components/SelectMook.svelte";
+  import MookDisplay from "./components/MookDisplay.svelte";
+import { mooks, selectedMook } from "./stores.js";
 
+let selectionValidate
+  selectedMook.subscribe(value => {
+		selectionValidate = value;
+	});
 </script>
 
 <main>
@@ -11,6 +16,9 @@ import SelectMook from "./components/SelectMook.svelte";
 <div class="selection">
   <SelectMook />
 </div>
+{#if $selectedMook  != 666}
+<MookDisplay currentMook={$mooks[selectionValidate]}/>
+{/if}
 <div class="tracker">
   <TrackerDisplay />
 </div>

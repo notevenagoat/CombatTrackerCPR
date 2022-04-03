@@ -2,7 +2,7 @@ import { add_flush_callback, subscribe } from "svelte/internal";
 import { writable, readable } from "svelte/store";
 
 export const trackedMooks = writable([]);
-export const selectedMook = writable(0);
+export const selectedMook = writable(666);
 
 export const hardenedMook_text = [
   "Mook is firing incendiary ammunition (CP:R page 346), but only has 10 rounds.",

@@ -1,14 +1,12 @@
 <script>
 import { mooks, selectedMook } from "../stores.js";
 
-import MookDisplay from "./MookDisplay.svelte";
+
 
 let selected = 0;
-let answered;
 
 function handleSelection() {
     $selectedMook=selected;
-    answered='yes';
 }
   
 </script>
@@ -52,10 +50,6 @@ function handleSelection() {
                            {/each}
                     </optgroup>
 	</select>
-  
-{#if answered === 'yes'}
-<MookDisplay currentMook={$mooks[selected]}/>
-{/if}
 
 </main>
 
