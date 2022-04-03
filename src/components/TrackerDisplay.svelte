@@ -62,20 +62,24 @@
  .trackingContainer, .trackingHeader {
    
    display:grid;
-   grid-template-columns: repeat(11, minmax(5em, 1fr));
-   grid-auto-rows: repeat(auto-fill, minmax(1em, 1fr));;
+   place-items: stretch;
+   grid-template-columns: 5em 8em 4em 4em 4em 4em 10em 4em 10em 10em 10em;
+   
    
     
  }
 
   .trackingHeader{
+    
     background-color: brown;
     color: white;
-    font-size: 1.2em;
     font-weight: bold;
   }
 
   .trackingContainer div{
-   border: 2px black solid;
+    border: 2px black solid;
+  }
+  .trackingHeader div{
+    border: 2px black solid;
   }
 </style>  

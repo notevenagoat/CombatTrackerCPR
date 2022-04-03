@@ -101,6 +101,7 @@ Stylize the boxes
       );
     gap: 2px;
     margin: 2px;
+    font-size: 0.7em;
   }
   .box {
     background-color: firebrick;
@@ -117,8 +118,8 @@ Stylize the boxes
     text-transform: uppercase;
     padding-left: 1em;
     padding-top:1em;
-    font-size: 1.3em;
     gap: 0 1em;
+    font-size: 1.3em;
   }
   .skillBox {
     display: grid;
@@ -128,15 +129,14 @@ Stylize the boxes
 
   .mainStats {
     font-weight: bold;
-    font-size: 1.3em;
-    padding-left: 2em;
+    padding-left: 1em;
     padding-top:1em;
+    font-size: 1.3em;
 
   }
   .mookDisplayTitle {
     background-color:rgb(88, 13, 13);
     padding-left: 0.5em;
-    font-size: 1.3em;
     font-weight: bold;
     padding-bottom: 5px;
   }

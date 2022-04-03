@@ -36,4 +36,12 @@ let selectionValidate
   .tracker {
     display: inline;
   }
+
+  @media (max-width: 550px) {
+	main { font-size: 1em; }
+  }
+  
+  @media (min-width: 551px) {
+	main { font-size: 1.25rem; }
+  }
 </style>
