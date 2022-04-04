@@ -1,16 +1,19 @@
 <!-- Adds mooks to the tracked one and displays the tracker
 perhaps i can move the add button as a separate component or chuck in in app.svelte? -->
+
+<!-- Need to createan unique idea when adding the mooks to the tracked mooks  -->
 <script>
   import { trackedMooks, selectedMook, mooks } from "../stores.js";
 
   // Sample data
-  trackedMooks.update((contents) => [...contents, $mooks[5]]);
+  trackedMooks.update((contents) => [...contents, $mooks[2]]);
   trackedMooks.update((contents) => [...contents, $mooks[24]]);
+  
+  trackedMooks.update((contents) => [...contents, $mooks[10]]);
   // end of sample
 
   const addMook = () => {
     trackedMooks.update((contents) => [...contents, $mooks[$selectedMook]]);
-
     selectedMook.set(666);
   };
 
@@ -19,18 +22,16 @@ perhaps i can move the add button as a separate component or chuck in in app.sve
  
   };
 
-  const handleHP = (e, id) => {
-    console.log($trackedMooks[id].trackedStats.hitPoints)
-  
+  const handleHP = (e, idList) => {
     if (
-      $trackedMooks[id].trackedStats.hitPoints  <
-      $trackedMooks[id].maxHP /2
+      $trackedMooks[idList].trackedStats.hitPoints  <
+      $trackedMooks[idList].maxHP /2
     ) {
       e.target.style.background='#ff6666'
     } else {
       e.target.style.background='#ffffff'
     }
-  
+  console.log($trackedMooks)
   };
 </script>
 
@@ -60,7 +61,7 @@ perhaps i can move the add button as a separate component or chuck in in app.sve
     {#each $trackedMooks as tracked, number}
     {handleInitialize(number)}
       <div class="trackingContainer">
-        <div>NPC</div>
+        <div>list #{number}</div>
         <div>{tracked.name}</div>
         <div>
           <input
