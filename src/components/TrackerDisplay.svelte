@@ -1,85 +1,136 @@
+<!-- Adds mooks to the tracked one and displays the tracker
+perhaps i can move the add button as a separate component or chuck in in app.svelte? -->
 <script>
   import { trackedMooks, selectedMook, mooks } from "../stores.js";
 
   // Sample data
-    trackedMooks.update((contents) => [...contents, $mooks[5]]);
-    trackedMooks.update((contents) => [...contents, $mooks[24]]);
-// end of sample 
+  trackedMooks.update((contents) => [...contents, $mooks[5]]);
+  trackedMooks.update((contents) => [...contents, $mooks[24]]);
+  // end of sample
 
   const addMook = () => {
     trackedMooks.update((contents) => [...contents, $mooks[$selectedMook]]);
-    selectedMook.set(666)
+
+    selectedMook.set(666);
   };
 
-// let selectionValidate
-//   selectedMook.subscribe(value => {
-// 		selectionValidate = value;
-// 	});
+  const handleInitialize = (number) => {
+    $trackedMooks[number].maxHP = $trackedMooks[number].trackedStats.hitPoints;
+ 
+  };
 
- </script>
+  const handleHP = (e, id) => {
+    console.log($trackedMooks[id].trackedStats.hitPoints)
+  
+    if (
+      $trackedMooks[id].trackedStats.hitPoints  <
+      $trackedMooks[id].maxHP /2
+    ) {
+      e.target.style.background='#ff6666'
+    } else {
+      e.target.style.background='#ffffff'
+    }
+  
+  };
+</script>
 
 <main>
-  <button disabled={$selectedMook  === 666} on:click={addMook}>
+  <button disabled={$selectedMook === 666} on:click={addMook}>
     Add Mook to Tracker
   </button>
 
-<div class="trackerGrid">
-  <div class="trackingHeader">
-    <div> Difficulty </div>
-    <div> Name </div>
-    <div> INI </div>
-    <div> HP </div>
-    <div> HeadSP </div>
-    <div> BodySP </div>
-    <div> Weapons </div>
-    <div> Ammo </div>
-    <div> Conditions </div>
-    <div> Crits </div>
-    <div> Notes </div>
-   </div>
-  {#each $trackedMooks as tracked,id}
-
-  <div class="trackingContainer">
-    <div> NPC </div>
-    <div> {tracked.name} </div>
-    <div> <input type=number bind:value={tracked.initiative} min=0 max=100> </div>
-    <div>  <input type=number bind:value={tracked.trackedStats.hitPoints} min=0 max=100> </div>
-    <div> <input type=number bind:value={tracked.trackedStats.armorHead} min=0 max=100> </div>
-    <div> <input type=number bind:value={tracked.trackedStats.armorBody} min=0 max=100> </div>
-    <div> {Object.values(tracked.weapons)}</div>
-    <div> Ammo </div>
-    <div> <select bind:value={tracked.trackedStats.conditions}> <option> Test </option></select>  </div>
-    <div> <select bind:value={tracked.trackedStats.conditions}> <option> Broken Arm </option></select>  </div>
-    <div> <textarea bind:value={tracked.notes}></textarea> </div>
+  <button> Start Combat </button>
+  <button> Clear All </button>
+  <p />
+  <button> NEXT TURN </button>
+  <div class="trackerGrid">
+    <div class="trackingHeader">
+      <div>Difficulty</div>
+      <div>Name</div>
+      <div>INI</div>
+      <div>HP</div>
+      <div>HeadSP</div>
+      <div>BodySP</div>
+      <div>Weapons</div>
+      <div>Ammo</div>
+      <div>Conditions</div>
+      <div>Crits</div>
+      <div>Notes</div>
+    </div>
+    {#each $trackedMooks as tracked, number}
+    {handleInitialize(number)}
+      <div class="trackingContainer">
+        <div>NPC</div>
+        <div>{tracked.name}</div>
+        <div>
+          <input
+            type="number"
+            bind:value={tracked.initiative}
+            min="0"
+            max="100"
+          />
+        </div>
+        <div>
+          <input
+            type="number"
+            on:change={(e) => handleHP(e, number)}
+            bind:value={tracked.trackedStats.hitPoints}
+            min="0"
+            max="100"
+          />
+        </div>
+        <div>
+          <input
+            type="number"
+            bind:value={tracked.trackedStats.armorHead}
+            min="0"
+            max="20"
+          />
+        </div>
+        <div>
+          <input
+            type="number"
+            bind:value={tracked.trackedStats.armorBody}
+            min="0"
+            max="20"
+          />
+        </div>
+        <div>{Object.values(tracked.weapons)}</div>
+        <div>Ammo</div>
+        <div>
+          <select bind:value={tracked.trackedStats.conditions}>
+            <option> Test </option></select
+          >
+        </div>
+        <div>
+          <select bind:value={tracked.trackedStats.conditions}>
+            <option> Broken Arm </option></select
+          >
+        </div>
+        <div><textarea bind:value={tracked.notes} /></div>
+      </div>
+    {/each}
   </div>
-  
-  {/each}
-</div>
 </main>
 
 <style>
+  .trackingContainer,
+  .trackingHeader {
+    display: grid;
+    place-items: stretch;
+    grid-template-columns: 5em 8em 4em 4em 4em 4em 10em 4em 10em 10em 10em;
+  }
 
- .trackingContainer, .trackingHeader {
-   
-   display:grid;
-   place-items: stretch;
-   grid-template-columns: 5em 8em 4em 4em 4em 4em 10em 4em 10em 10em 10em;
-   
-   
-    
- }
-
-  .trackingHeader{
-    
+  .trackingHeader {
     background-color: brown;
     color: white;
     font-weight: bold;
   }
 
-  .trackingContainer div{
+  .trackingContainer div {
     border: 2px black solid;
   }
-  .trackingHeader div{
+  .trackingHeader div {
     border: 2px black solid;
   }
-</style>  
+</style>

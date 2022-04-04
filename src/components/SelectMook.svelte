@@ -13,6 +13,7 @@ function handleSelection() {
 
 <main>
 	<select bind:value={selected} on:change="{handleSelection}">
+        <!-- <option value="" disabled selected hidden>Please Choose...</option> -->
 		<optgroup label="Disposable Mooks">
         {#each $mooks as thisMook}
         {#if thisMook.difficulty === 1}	
