@@ -3,40 +3,46 @@ perhaps i can move the add button as a separate component or chuck in in app.sve
 
 <!-- Need to createan unique idea when adding the mooks to the tracked mooks  -->
 <script>
-  import { trackedMooks, selectedMook, mooks } from "../stores.js";
+  import { selectedMook, mooks } from "../stores.js";
+  import { v4 as uuidv4 } from "uuid";
 
-  // Sample data
-  trackedMooks.update((contents) => [...contents, $mooks[2]]);
-  trackedMooks.update((contents) => [...contents, $mooks[24]]);
-  
-  trackedMooks.update((contents) => [...contents, $mooks[10]]);
-  // end of sample
+  let trackedMooks = [];
 
-  const addMook = () => {
-    trackedMooks.update((contents) => [...contents, $mooks[$selectedMook]]);
+
+  const addMook = (object) => {
+        let clone=JSON.parse(JSON.stringify(object))
+      clone.maxHP = clone.trackedStats.hitPoints;
+		trackedMooks = [...trackedMooks, clone];
+    // adds the Mook into tracked Mooks
+     // assigns maxhp
+      
+      // $trackedMooks[$trackedMooks.length-1].id = uuidv4();
     selectedMook.set(666);
-  };
+   };
 
-  const handleInitialize = (number) => {
-    $trackedMooks[number].maxHP = $trackedMooks[number].trackedStats.hitPoints;
- 
-  };
+  //  sample data 
+   addMook($mooks[2])
+   addMook($mooks[2])
+   addMook($mooks[20])
 
+  
+  
   const handleHP = (e, idList) => {
+  
     if (
-      $trackedMooks[idList].trackedStats.hitPoints  <
-      $trackedMooks[idList].maxHP /2
+      trackedMooks[idList].trackedStats.hitPoints  <
+      trackedMooks[idList].maxHP /2
     ) {
       e.target.style.background='#ff6666'
     } else {
       e.target.style.background='#ffffff'
     }
-  console.log($trackedMooks)
   };
+  
 </script>
 
 <main>
-  <button disabled={$selectedMook === 666} on:click={addMook}>
+  <button disabled={$selectedMook === 666} on:click={addMook($mooks[$selectedMook])}>
     Add Mook to Tracker
   </button>
 
@@ -58,15 +64,15 @@ perhaps i can move the add button as a separate component or chuck in in app.sve
       <div>Crits</div>
       <div>Notes</div>
     </div>
-    {#each $trackedMooks as tracked, number}
-    {handleInitialize(number)}
+   
+    {#each trackedMooks as tracked, number}
       <div class="trackingContainer">
         <div>list #{number}</div>
-        <div>{tracked.name}</div>
+        <div>{ trackedMooks[number].name}</div>
         <div>
           <input
             type="number"
-            bind:value={tracked.initiative}
+            bind:value={ trackedMooks[number].initiative}
             min="0"
             max="100"
           />
@@ -75,7 +81,7 @@ perhaps i can move the add button as a separate component or chuck in in app.sve
           <input
             type="number"
             on:change={(e) => handleHP(e, number)}
-            bind:value={tracked.trackedStats.hitPoints}
+            bind:value={ trackedMooks[number].trackedStats.hitPoints}
             min="0"
             max="100"
           />
@@ -83,7 +89,7 @@ perhaps i can move the add button as a separate component or chuck in in app.sve
         <div>
           <input
             type="number"
-            bind:value={tracked.trackedStats.armorHead}
+            bind:value={ trackedMooks[number].trackedStats.armorHead}
             min="0"
             max="20"
           />
@@ -91,24 +97,24 @@ perhaps i can move the add button as a separate component or chuck in in app.sve
         <div>
           <input
             type="number"
-            bind:value={tracked.trackedStats.armorBody}
+            bind:value={ trackedMooks[number].trackedStats.armorBody}
             min="0"
             max="20"
           />
         </div>
-        <div>{Object.values(tracked.weapons)}</div>
+        <div>{Object.values( trackedMooks[number].weapons)}</div>
         <div>Ammo</div>
         <div>
-          <select bind:value={tracked.trackedStats.conditions}>
+          <select bind:value={ trackedMooks[number].trackedStats.conditions}>
             <option> Test </option></select
           >
         </div>
         <div>
-          <select bind:value={tracked.trackedStats.conditions}>
+          <select bind:value={ trackedMooks[number].trackedStats.conditions}>
             <option> Broken Arm </option></select
           >
         </div>
-        <div><textarea bind:value={tracked.notes} /></div>
+        <div><textarea bind:value={ trackedMooks[number].notes} /></div>
       </div>
     {/each}
   </div>
