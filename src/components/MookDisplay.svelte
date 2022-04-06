@@ -3,19 +3,13 @@
 </script>
 
 <!-- 
-Figure out how to push this to github
-Try to do a script to reorder the skills by level
 I need to display the damage dice for the weapons
 I need to adjust skills and stats depending on armorBody
-Need to make a dropdown menu for all the mooks to display underneath 
-
 Stylize the boxes
-
 -->
 
 <main>
 
- 
   <div class="mookDetails">
     <div class="wrapper">
       <div class="box a">
@@ -89,6 +83,7 @@ Stylize the boxes
       </div>
     </div>
   </div>
+
 </main>
 
 <style>

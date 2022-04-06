@@ -1,19 +1,19 @@
 <script>
 import { mooks, selectedMook } from "../stores.js";
 
-
-
-let selected = 0;
+let dropdownSelection = 0;
 
 function handleSelection() {
-    $selectedMook=selected;
+    $selectedMook=dropdownSelection;
+
 }
   
 </script>
 
 <main>
-	<select bind:value={selected} on:click="{handleSelection}">
-        <!-- <option value="" disabled selected hidden>Please Choose...</option> -->
+	<select bind:value={dropdownSelection} on:click="{handleSelection}">
+        <option value=0> Add Player</option>
+        
 		<optgroup label="Disposable Mooks">
         {#each $mooks as thisMook}
         {#if thisMook.difficulty === 1}	

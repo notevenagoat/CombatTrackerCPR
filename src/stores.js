@@ -2,7 +2,8 @@ import { add_flush_callback, subscribe } from "svelte/internal";
 import { writable, readable } from "svelte/store";
 
 export const trackedMooks = writable([]);
-export const selectedMook = writable(666);
+export const selectedMook = writable(0);
+
 
 export const hardenedMook_text = [
   "Mook is firing incendiary ammunition (CP:R page 346), but only has 10 rounds.",
@@ -43,6 +44,35 @@ export const hardenedMiniBoss = [
   "Give them Gills (see CP:R page 363) and a round of Exotic Bodysculpting (see CP:R page 226). Shark? Arowana? You decide",
 ];
 export const mooks = readable([
+  {
+    id: 0,
+    name: "Player",
+    stats: {
+      int: 2,
+      ref: 2,
+      dex: 2,
+      tech: 2,
+      cool: 2,
+      will: 2,
+      move: 2,
+      body: 2,
+      emp: 2,
+    },
+    weapons: {
+      weapon1: "",
+      weapon2: "",
+    },
+    trackedStats: {
+      hitPoints: 30,
+      armorHead: 11,
+      armorBody: 11,
+    },
+    gear: "",
+    skills: {
+     Player: '??'
+    },
+    difficulty: 0,
+  },
   {
     id: 1,
     name: "Bodyguard",
